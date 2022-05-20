@@ -6,7 +6,7 @@ description = "Kubernetes Operational View - read-only system dashboard for mult
 authors = ["Henning Jacobs <henning@jacobs1.de>"]
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.10,<4"
 click = "*"
 flask = "*"
 flask-dance = "*"
@@ -15,13 +15,10 @@ json-delta = ">=2.0"
 pykube-ng = "*"
 redlock-py = "*"
 requests = "*"
+# for Python 3.10 support
+urllib3 = ">=1.26"
 stups-tokens = ">=1.1.19"
 
 [tool.poetry.dev-dependencies]
-coveralls = "*"
-flake8 = "*"
-pytest = "*"
 pytest-cov = "*"
-black = "^19.10b0"
-mypy = "^0.761"
-pre-commit = "^1.21.0"
+pre-commit = "^2.9.2"

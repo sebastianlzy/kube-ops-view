@@ -16,7 +16,7 @@ def expo(n: int, base=2, factor=1, max_value=None):
              of max_value will forever after be yielded.
 
     """
-    a = factor * base ** n
+    a = factor * base**n
     if max_value is None or a < max_value:
         return a
     else:

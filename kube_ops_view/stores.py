@@ -168,9 +168,9 @@ class RedisStore(AbstractStore):
     def redeem_screen_token(self, token: str, remote_addr: str):
         """Validate the given token and bind it to the IP."""
         redis_key = "screen-tokens:{}".format(token)
-        data = self._redis.get(redis_key)
-        if not data:
+        data_binary = self._redis.get(redis_key)
+        if not data_binary:
             raise ValueError("Invalid token")
-        data = json.loads(data.decode("utf-8"))
+        data = json.loads(data_binary.decode("utf-8"))
         data = check_token(token, remote_addr, data)
         self._redis.set(redis_key, json.dumps(data))
