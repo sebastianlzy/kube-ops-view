@@ -14,3 +14,4 @@ scm-source.json
 .coverage
 .pytest_cache/
 .mypy_cache
+.python-version

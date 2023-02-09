@@ -2,9 +2,12 @@ FROM python:3.10-slim
 
 WORKDIR /
 
-RUN apt-get update && apt-get install --yes --no-install-recommends gcc && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install --yes --no-install-recommends curl gcc libc-dev libffi-dev && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install poetry
+# https://github.com/rust-lang/cargo/issues/8719#issuecomment-1253575253
+#ENV PATH=/root/.cargo/bin:$PATH
+#RUN --mount=type=tmpfs,target=/root/.cargo curl https://sh.rustup.rs -sSf | bash -s -- -y && pip install poetry
 
 COPY poetry.lock /
 COPY pyproject.toml /

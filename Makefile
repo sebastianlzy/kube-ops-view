@@ -19,7 +19,7 @@ lint: install
 	poetry run pre-commit run --all-files
 
 test: lint install
-	poetry run coverage run --source=kube_ops_view -m py.test -v
+	poetry run coverage run --source=kube_ops_view -m pytest -v
 	poetry run coverage report
 
 version:
@@ -37,6 +37,7 @@ docker-arm: appjs
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker buildx create --name arm-node --append --use --platform "linux/arm"
 	docker buildx build --build-arg "VERSION=$(VERSION)" --platform "linux/arm" -t $(IMAGE):$(TAG) --load .
+	docker buildx rm arm-node
 	@echo 'Docker image $(IMAGE):$(TAG) can now be used.'
 
 push: docker
